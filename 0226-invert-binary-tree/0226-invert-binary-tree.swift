@@ -14,22 +14,15 @@
  * }
  */
 class Solution {
-   func invertTree(_ root: TreeNode?) -> TreeNode? {
-       guard let root = root else { return nil }
+  func invertTree(_ root: TreeNode?) -> TreeNode? {
+      guard let root = root else { return nil }
 
-        var queue: [TreeNode] = [root]
+      let leftSubtree = invertTree(root.left)
+      let rightSubtree = invertTree(root.right)
 
-        while !queue.isEmpty {
-            let current = queue.removeFirst()
+      root.left = rightSubtree
+      root.right = leftSubtree
 
-            let temp = current.left
-            current.left = current.right
-            current.right = temp
-
-            if let left = current.left { queue.append(left) }
-            if let right = current.right { queue.append(right) }
-        }
-
-        return root
-    }
+      return root
+  }
 }
