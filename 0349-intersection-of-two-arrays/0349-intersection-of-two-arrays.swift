@@ -5,5 +5,4 @@ class Solution {
         let intersectionSet = set1.intersection(set2)
         return Array(intersectionSet)
     }
-
 }
