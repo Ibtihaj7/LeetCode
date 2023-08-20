@@ -1,13 +1,20 @@
 class Solution {
     func isValid(_ s: String) -> Bool {
-        var str = s
+        var stack = [Character]()
+        let bracketsMap: [Character: Character] = [")": "(", "}": "{", "]": "["]
 
-        while str.contains("()") || str.contains("[]") || str.contains("{}") {
-            str = str.replacingOccurrences(of: "()", with: "")
-            str = str.replacingOccurrences(of: "[]", with: "")
-            str = str.replacingOccurrences(of: "{}", with: "")
+        for char in s {
+            if char == "(" || char == "{" || char == "[" {
+                stack.append(char)
+            } else if char == ")" || char == "}" || char == "]" {
+                if stack.isEmpty || stack.last != bracketsMap[char] {
+                    return false
+                }
+                stack.removeLast()
+            }
         }
-        return str.isEmpty
+
+        return stack.isEmpty
     }
 
 }
