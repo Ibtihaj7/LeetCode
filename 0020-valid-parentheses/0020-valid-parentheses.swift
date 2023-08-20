@@ -7,7 +7,6 @@ class Solution {
             str = str.replacingOccurrences(of: "[]", with: "")
             str = str.replacingOccurrences(of: "{}", with: "")
         }
-
         return str.isEmpty
     }
 
